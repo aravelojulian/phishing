@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Phishing</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+<div class="d-flex flex-column align-items-center">
+    <div class="d-flex flex-row w-100">
+        <nav class="navbar w-100">
+            <div class="container-fluid">
+                <a class="navbar-brand">
+                    <span>Phishing</span>
+                </a>
+            </div>
+        </nav>
+    </div>
+
+    <a href="{{ document.docfile.url }}">{{ document.docfile.name }}</a>
+
+    <div class="content mt-5 w-100">
+        <div class="d-flex flex-row justify-content-between">
+            <nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='%236c757d'/%3E%3C/svg%3E&#34;);"
+                 aria-label="breadcrumb" class="col-4 px-0">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item">Inicio</li>
+                    <li class="breadcrumb-item active" aria-current="page">Analizar datos</li>
+                </ol>
+            </nav>
+
+            <div class="input-group d-flex justify-content-end align-items-center">
+                <form action="{% url "index" %}" method="post" enctype="multipart/form-data" class="d-flex align-items-center">
+                    {% csrf_token %}
+                    <p class="mb-0 mr-3 form-control">
+                        {{ form.docfile }}
+                    </p>
+
+                    <input class="input-group-text" type="submit" value="Guardar"/>
+                </form>
+
+                <button class="input-group-text ml-3" for="loadData">Analizar datos</button>
+            </div>
+        </div>
+
+        <div class="mt-5">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Url</th>
+                    <th scope="col">Detalles Url</th>
+                    <th scope="col">Objetivo</th>
+                    <th scope="col">Detalles</th>
+                    <th scope="col">Verificado</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <th scope="row">7591077</th>
+                    <td>https:\\jhfgy.hlmbwmk.cn</td>
+                    <td>http:\\www.phishtank.com\phish_detail.php?phish_id=7591077</td>
+                    <td>Otro</td>
+                    <td>
+                        <i class="bi bi-1-circle"></i>
+                    </td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th scope="row">7591076</th>
+                    <td>https:\\jfcvfdc.vzpsxgu.cn</td>
+                    <td>http:\\www.phishtank.com\phish_detail.php?phish_id=7591076</td>
+                    <td>Otro</td>
+                    <td>
+                        <i class="bi bi-1-circle"></i>
+                    </td>
+                    <td></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
