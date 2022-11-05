@@ -34,22 +34,18 @@ y = data['phishing']
 
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=(test_size / 100), shuffle=True)
 
-# vm = HistGradientBoostingClassifier().fit(X, y)
-vm = make_pipeline(StandardScaler(), svm.LinearSVC(max_iter=10000, loss="hinge", random_state=42))
-vm.fit(X, y)
+vm = HistGradientBoostingClassifier().fit(X, y)
 
 # print(vm.score(X, y))
 # print(vm.decision_function(X_test)[5])
 # print(vm.predict(X_test)[5])
-# y_pred = vm.predict(X_test)
-#
-# precision = precision_score(y_test, y_pred)
-# recall = recall_score(y_test, y_pred)
-# f1 = f1_score(y_test, y_pred)
-# accuracy = accuracy_score(y_test, y_pred)
+y_pred = vm.predict(X_test)
 
-# plt.figure(figsize=(10, 5))
-#
+precision = precision_score(y_test, y_pred)
+recall = recall_score(y_test, y_pred)
+f1 = f1_score(y_test, y_pred)
+accuracy = accuracy_score(y_test, y_pred)
+
 decision_function = vm.decision_function(X)
 support_vector_indices = np.where(np.abs(decision_function) <= 1 + 1e-15)[0]
 support_vectors = X[X.columns[0]][support_vector_indices]
