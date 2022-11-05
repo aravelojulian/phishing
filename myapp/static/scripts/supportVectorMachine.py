@@ -34,9 +34,9 @@ y = data['phishing']
 
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=(test_size / 100), shuffle=True)
 
-vm = HistGradientBoostingClassifier().fit(X, y)
-# vm = make_pipeline(StandardScaler(), svm.LinearSVC(max_iter=10000, loss="hinge", random_state=42))
-# vm.fit(X, y)
+# vm = HistGradientBoostingClassifier().fit(X, y)
+vm = make_pipeline(StandardScaler(), svm.LinearSVC(max_iter=10000, loss="hinge", random_state=42))
+vm.fit(X, y)
 
 # print(vm.score(X, y))
 # print(vm.decision_function(X_test)[5])
