@@ -3,25 +3,35 @@
 <head>
     <meta charset="utf-8">
     <title>Phishing</title>
+
+    <link rel="apple-touch-icon" sizes="180x180" href="../static/images/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../static/images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../static/images/favicon-16x16.png">
+
+    <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css"
+    />
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
-    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 
 <body>
-<div class="d-flex flex-column align-items-center">
+<div class="d-flex flex-column align-items-center justify-content-between">
     <div class="d-flex flex-row w-100">
         <nav class="navbar w-100">
-            <div class="container-fluid">
+            <div class="container-fluid content px-0">
                 <a class="navbar-brand">
-                    <span>Phishing</span>
+                    <img src="../static/images/logo_white.png" alt="logo">
                 </a>
+
+                <button type="button" class="btn">
+                    <i class="bi bi-person-circle icon-user"></i>
+                </button>
             </div>
         </nav>
     </div>
-
-    <a href="{{ document.docfile.url }}">{{ document.docfile.name }}</a>
 
     <div class="content mt-5 w-100">
         <div class="d-flex flex-row justify-content-between">
@@ -33,15 +43,8 @@
                 </ol>
             </nav>
 
-            <div class="input-group d-flex justify-content-end align-items-center">
-                <form action="{% url "index" %}" method="post" enctype="multipart/form-data" class="d-flex align-items-center">
-                    {% csrf_token %}
-                    <p class="mb-0 mr-3 form-control">
-                        {{ form.docfile }}
-                    </p>
-
-                    <input class="input-group-text" type="submit" value="Guardar"/>
-                </form>
+            <div class="input-group d-flex justify-content-end align-items-center col-6">
+                <input class="form-control" type="file" id="datasetFile">
 
                 <button class="input-group-text ml-3" for="loadData">Analizar datos</button>
             </div>
@@ -52,33 +55,27 @@
                 <thead>
                 <tr>
                     <th scope="col">Id</th>
-                    <th scope="col">Url</th>
-                    <th scope="col">Detalles Url</th>
-                    <th scope="col">Objetivo</th>
-                    <th scope="col">Detalles</th>
-                    <th scope="col">Verificado</th>
+                    <th scope="col">Núm. Puntos</th>
+                    <th scope="col">Nivel de subdominio</th>
+                    <th scope="col">Nivel de camino</th>
+                    <th scope="col">Longitud URL</th>
+                    <th scope="col">Núm. Guiones</th>
+                    <th scope="col">Símbolo @</th>
+                    <th scope="col">Núm. Guión bajo</th>
+                    <th scope="col">Clasificación</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr>
-                    <th scope="row">7591077</th>
-                    <td>https:\\jhfgy.hlmbwmk.cn</td>
-                    <td>http:\\www.phishtank.com\phish_detail.php?phish_id=7591077</td>
-                    <td>Otro</td>
-                    <td>
-                        <i class="bi bi-1-circle"></i>
-                    </td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <th scope="row">7591076</th>
-                    <td>https:\\jfcvfdc.vzpsxgu.cn</td>
-                    <td>http:\\www.phishtank.com\phish_detail.php?phish_id=7591076</td>
-                    <td>Otro</td>
-                    <td>
-                        <i class="bi bi-1-circle"></i>
-                    </td>
-                    <td></td>
+                    <th scope="row">1</th>
+                    <td>3</td>
+                    <td>1</td>
+                    <td>5</td>
+                    <td>72</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>Si</td>
                 </tr>
                 </tbody>
             </table>

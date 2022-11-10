@@ -11,7 +11,18 @@ button {
 }
 
 .navbar {
-    background-color: #3F37C9;
+    background-color: #17a2b8;
+}
+
+i.icon-user {
+    height: 28px;
+    width: 28px;
+    font-size: 28px;
+    color: white;
+}
+
+.navbar .container-fluid .navbar-brand img {
+    height: 50px;
 }
 
 ol.breadcrumb  {

@@ -1,23 +1,17 @@
-from django.shortcuts import redirect, render
-from .models import Document
+from django.shortcuts import render
 from .forms import DocumentForm
-
-import logging
-logger = logging.getLogger(__name__)
+from .static.scripts.ProcessDataset import ProcessDataset
 
 
 def index(request):
-    if request.method == 'POST':
-        form = DocumentForm(request.POST, request.FILES)
-        if form.is_valid():
-            newdoc = Document(docfile=request.FILES['docfile'])
-            newdoc.save()
+    # if request.method == 'POST':
+    #     form = DocumentForm(request.POST, request.FILES)
+    #     print(request.FILES)
+    #     # data = ProcessDataset.load_file(request.FILES['doc_file'])
+    #     # print(data)
+    # else:
+    #     form = DocumentForm()
 
-            return redirect('index')
-    else:
-        form = DocumentForm()
-
-    document = Document.objects.last()
-
-    context = {'document': document, 'form': form}
+    # context = {'form': form}
+    context = {}
     return render(request, 'index.html', context)
