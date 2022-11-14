@@ -9,7 +9,8 @@ def index(request):
     dataset = []
     # Variable donde se van a almacenar los valores que obtenemos al ejecutar el algoritmo de árboles de decisión
     result_tree = []
-    # Variable donde se van a almacenar los valores que obtenemos al ejecutar el algoritmo de máquinas de soporte vectorial
+    # Variable donde se van a almacenar los valores que obtenemos al ejecutar el algoritmo de máquinas de soporte
+    # vectorial
     result_svm = []
 
     # Se ejecuta cuando se detecta una acción de tipo POST en un formulario
@@ -25,11 +26,11 @@ def index(request):
         # Ejecuta la clasificación según el algoritmo árboles de decisión
         result_tree = DecisionTreeClassifier.process(DecisionTreeClassifier, dataset_file.temporary_file_path())
 
-
         # Define el número de casos a evaluar según el algoritmo árboles de decisión
         SupportVectorMachineClassifier.set_num_of_values(SupportVectorMachineClassifier, 5005)
         # Ejecuta la clasificación según el algoritmo árboles de decisión
-        result_svm = SupportVectorMachineClassifier.process(SupportVectorMachineClassifier, dataset_file.temporary_file_path())
+        result_svm = SupportVectorMachineClassifier.process(SupportVectorMachineClassifier,
+                                                            dataset_file.temporary_file_path())
     else:
         return render(request, 'index.html')
 
