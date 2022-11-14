@@ -1,23 +1,22 @@
 import pandas as pd
 
 
-class ProcessDataset:
-    # total de datos a evaluar
-    num_of_values = 5005
+def load_file(url):
+    # Utiliza la librería pandas para leer el archivo
+    data = pd.read_csv(url)
+    # El archivo original que usamos presenta la columna CLASS_LABEL, en caso de ser así lo reemplazamos por el
+    # nombre phishing
+    data.rename(columns={'CLASS_LABEL': 'phishing'}, inplace=True)
 
-    def load_file(self, url):
-        data = pd.read_csv(url)
-        data.rename(columns={'CLASS_LABEL': 'phishing'}, inplace=True)
+    # Convertimos todas las columnas con tipo de dato float64 a float32
+    float_cols = data.select_dtypes('float64').columns
+    for c in float_cols:
+        data[c] = data[c].astype('float32')
 
-        while len(data) > self.num_of_values:
-            data.drop(len(data) - 1, axis=0, inplace=True)
+    # Convertimos todas las columnas con tipo de dato int64 a int32
+    int_cols = data.select_dtypes('int64').columns
+    for c in int_cols:
+        data[c] = data[c].astype('int32')
 
-        float_cols = data.select_dtypes('float64').columns
-        for c in float_cols:
-            data[c] = data[c].astype('float32')
-
-        int_cols = data.select_dtypes('int64').columns
-        for c in int_cols:
-            data[c] = data[c].astype('int32')
-
-        return data
+    # Retornamos los valores del dataset
+    return data.values

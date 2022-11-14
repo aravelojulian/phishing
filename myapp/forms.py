@@ -2,4 +2,5 @@ from django import forms
 
 
 class DocumentForm(forms.Form):
-    doc_file = forms.FileField(label='Select a file')
+    title = forms.CharField(max_length=50)
+    file = forms.FileField()
