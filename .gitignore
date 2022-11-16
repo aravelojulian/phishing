@@ -1,3 +1,4 @@
 
 *.pyc
-*.pyc
+myapp/static/test.csv
+myproject/__pycache__/
