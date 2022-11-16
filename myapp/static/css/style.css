@@ -21,14 +21,17 @@ i.icon-user {
     color: white;
 }
 
+a.icon-details {
+    color: black;
+    font-size: 24px;
+    width: 24px;
+    height: 24px;
+}
+
 .navbar .container-fluid .navbar-brand img {
     height: 50px;
 }
 
 ol.breadcrumb  {
     margin-bottom: 0;
-}
-
-.navbar .container-fluid .navbar-brand span {
-
 }

@@ -19,4 +19,4 @@ def load_file(url):
         data[c] = data[c].astype('int32')
 
     # Retornamos los valores del dataset
-    return data.values
+    return data

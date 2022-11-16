@@ -16,6 +16,9 @@
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    <script src="{% static 'jquery-3.6.1.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
 </head>
 
 <body>
@@ -40,16 +43,19 @@
                  aria-label="breadcrumb" class="col-4 px-0">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item">Inicio</li>
-                    <li class="breadcrumb-item active" aria-current="page">Analizar datos</li>
+                    <li class="breadcrumb-item active" aria-current="page">Procesar datos</li>
                 </ol>
             </nav>
 
-            <form class="input-group d-flex justify-content-end align-items-center col-6" action="" method="POST"
-                  enctype="multipart/form-data">
-                {% csrf_token %}
-                <input type="file" name="phishing_dataset"/>
-                <button class="input-group-text ml-3" type="submit">Analizar datos</button>
-            </form>
+            <div class="d-flex justify-content-end align-items-center col-7">
+                <form class="input-group d-flex" action="" method="POST"
+                      enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <input type="file" name="phishing_dataset"/>
+                    <button class="input-group-text mx-3" type="submit">Procesar datos</button>
+                </form>
+                <button class="input-group-text" onclick="generate_report();">Generar reporte</button>
+            </div>
         </div>
 
         <div class="mt-5">
@@ -64,20 +70,20 @@
                 </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <th scope="row">Árboles de decisión</th>
-                        <th scope="row">{{tree.0}}</th>
-                        <th scope="row">{{tree.1}}</th>
-                        <th scope="row">{{tree.2}}</th>
-                        <th scope="row">{{tree.3}}</th>
-                    </tr>
-                    <tr>
-                        <th scope="row">Máquinas de soporte vectorial</th>
-                        <th scope="row">{{svm.0}}</th>
-                        <th scope="row">{{svm.1}}</th>
-                        <th scope="row">{{svm.2}}</th>
-                        <th scope="row">{{svm.3}}</th>
-                    </tr>
+                <tr>
+                    <th scope="row">Árboles de decisión</th>
+                    <th scope="row">{{tree.0}}</th>
+                    <th scope="row">{{tree.1}}</th>
+                    <th scope="row">{{tree.2}}</th>
+                    <th scope="row">{{tree.3}}</th>
+                </tr>
+                <tr>
+                    <th scope="row">Máquinas de soporte vectorial</th>
+                    <th scope="row">{{svm.0}}</th>
+                    <th scope="row">{{svm.1}}</th>
+                    <th scope="row">{{svm.2}}</th>
+                    <th scope="row">{{svm.3}}</th>
+                </tr>
                 </tbody>
             </table>
         </div>
@@ -93,8 +99,11 @@
                     <th scope="col">Longitud URL</th>
                     <th scope="col">Núm. Guiones</th>
                     <th scope="col">Símbolo @</th>
-                    <th scope="col">Núm. Guión bajo</th>
+                    <th scope="col">Núm. Guion bajo</th>
+                    <th scope="col">AD</th>
+                    <th scope="col">MSV</th>
                     <th scope="col">Clasificación</th>
+                    <th scope="col"></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -108,7 +117,13 @@
                     <td>{{d.5}}</td>
                     <td>{{d.6}}</td>
                     <td>{{d.7}}</td>
+                    <td>{{d.50}}</td>
+                    <td>{{d.51}}</td>
                     <td></td>
+                    <td>
+                        <a class="bi bi-eye-fill icon-details" href="{% url 'details' row=d.0 %}"
+                           data-modal-url="{% url 'details' row=d.0 %}"></a>
+                    </td>
                 </tr>
                 {% endfor %}
                 </tbody>
@@ -117,5 +132,29 @@
     </div>
 </div>
 
+{% include "details.html" %}
+
+<script>
+  $(document).on("click", ".icon-details", function (e) {
+    e.preventDefault();
+    var $modal = $("#modalDetails");
+    var modal_url = $(this).data("modal-url");
+    $(".modal-body", $modal).load(modal_url, function () {
+      $modal.modal("show");
+    });
+  });
+
+</script>
+<script>
+    function generate_report() {
+        $.get('report', function (data) {
+            alert("Su reporte ha sido descargado correctamente");
+            var $modal = $("#report");
+            $(".modal-body", $modal).load('report', function () {
+              $modal.modal("show");
+            });
+        });
+    }
+</script>
 </body>
 </html>

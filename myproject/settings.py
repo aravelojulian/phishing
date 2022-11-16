@@ -128,6 +128,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'bootstrap'),
+    os.path.join(BASE_DIR, 'jquery'),
     os.path.join(BASE_DIR, 'myapp/static'),
 ]
 

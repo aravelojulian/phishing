@@ -10,6 +10,9 @@ class DecisionTreeClassifier:
     # total de datos a evaluar
     num_of_values = 10000
 
+    # Creamos una instancia del algoritmo de clasificación
+    dtc = tree.DecisionTreeClassifier()
+
     # Cambia la cantidad de datos a evaluar
     def set_num_of_values(self, num):
         self.num_of_values = num
@@ -47,13 +50,11 @@ class DecisionTreeClassifier:
         y = data['phishing']
 
         # Dividimos nuestra muestra para entrenamiento y prueba, utilizamos un tamaño de prueba definido y lo hacemos
-        # ramdom
+        # random
         x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.2, shuffle=True)
 
-        # Instanciamos el algoritmo de clasificación
-        dtc = tree.DecisionTreeClassifier()
         # Ejecutamos el algoritmo con las muestras de entrenamiento
-        dtc = dtc.fit(x_train, y_train)
+        dtc = self.dtc.fit(x_train, y_train)
 
         # Ejecutamos las predicciones sobre la muestra de prueba
         y_prediction = dtc.predict(x_test)
@@ -70,3 +71,10 @@ class DecisionTreeClassifier:
 
         # Retornamos una matriz con los resultados obtenidos
         return [precision, recall, f1, accuracy]
+
+    def predict(self, data):
+        # Eliminamos las columnas id y phishing para utilizar el resto del rango como datos para el algoritmo
+        data = data.drop(['id', 'phishing'], axis=1)
+
+        # Retornamos la predicción del dataset
+        return self.dtc.predict(data)
