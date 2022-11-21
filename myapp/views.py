@@ -20,7 +20,7 @@ class Dataset:
         self.dataset.insert(len(self.dataset), column_name, column_data, True)
 
     def get_values(self):
-        return self.dataset.values
+        return self.dataset.to_records()
 
 
 url = 'C:/Users/Ale/Documents/Projects/phish/myapp/static/phishing.csv'
@@ -29,12 +29,15 @@ dataset_class = Dataset()
 
 def generate_report(request):
     dataset_class.dataset.to_excel(r'Reporte.xlsx', index=False)
+
     return render(request, "report.html")
 
 
 def details(request, row):
-    context = {'row': row}
-    return render(request, "details.html", context)
+    data = dataset_class.dataset.loc[dataset_class.dataset['id'] == int(float(row))]
+    data = data.to_records()[0]
+
+    return render(request, "details.html", {'row': data})
 
 
 def index(request):
@@ -76,9 +79,11 @@ def index(request):
 
         # Agregamos una nueva columna con los valores de la predicción del algoritmo Máquinas de Soporte Vectorial
         dataset_class.assign_column('SVMClassification', predict_svm)
-    else:
-        return render(request, 'index.html')
 
-    # Envía los datos a la vista para mostrarlos
-    context = {'tree': result_tree, 'dataset': dataset_class.get_values(), 'svm': result_svm}
-    return render(request, 'index.html', context)
+        # Envía los datos a la vista para mostrarlos
+        context = {'tree': result_tree, 'svm': result_svm, 'dataset': dataset_class.get_values()}
+        return render(request, 'index.html', context)
+    else:
+        # Envía los datos a la vista para mostrarlos
+        context = {'tree': result_tree, 'svm': result_svm}
+        return render(request, 'index.html', context)

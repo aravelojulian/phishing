@@ -1,5 +1,6 @@
 body {
     margin: 0;
+    font-size: 15px !important;
 }
 
 button {
@@ -21,11 +22,19 @@ i.icon-user {
     color: white;
 }
 
-a.icon-details {
+button.see-details {
+    background-color: transparent;
+    border: none;
     color: black;
-    font-size: 24px;
-    width: 24px;
-    height: 24px;
+    padding: 0;
+}
+
+button.see-details span {
+    font-size: 20px !important;
+}
+
+button.see-details:hover {
+    color: #0069d9;
 }
 
 .navbar .container-fluid .navbar-brand img {
@@ -34,4 +43,26 @@ a.icon-details {
 
 ol.breadcrumb  {
     margin-bottom: 0;
+}
+
+.modal-dialog {
+    max-width: 600px !important;
+}
+
+.modal-header {
+    border-bottom: none !important;
+}
+
+.phishing-1 {
+    background-color: green !important;
+    color: white !important;
+}
+
+.phishing-0 {
+    background-color: red !important;
+    color: white !important;
+}
+
+.input-file-dataset {
+    align-self: center;
 }

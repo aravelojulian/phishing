@@ -9,7 +9,7 @@ class SupportVectorMachineClassifier:
     # porciento de casos para test
     test_size = 20
     # total de datos a evaluar
-    num_of_values = 5005
+    num_of_values = 10000
 
     # Creamos una instancia del algoritmo de clasificación utilizando la función Linear de las máquinas de soporte
     # vectorial
@@ -56,7 +56,7 @@ class SupportVectorMachineClassifier:
 
         # Dividimos nuestra muestra para entrenamiento y prueba, utilizamos un tamaño de prueba definido y lo hacemos
         # ramdom
-        x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=(self.test_size / 100), shuffle=True)
+        x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=(self.test_size / 100))
 
         # Ejecutamos el algoritmo con las muestras de entrenamiento
         self.clf.fit(x_train, y_train)
@@ -75,7 +75,12 @@ class SupportVectorMachineClassifier:
         accuracy = accuracy_score(y_test, y_prediction)
 
         # Retornamos una matriz con los resultados obtenidos
-        return [precision, recall, f1, accuracy]
+        return {
+            "precision": precision,
+            "recall": recall,
+            "f1": f1,
+            "accuracy": accuracy
+        }
 
     def predict(self, data):
         # Eliminamos las columnas id y phishing para utilizar el resto del rango como datos para el algoritmo

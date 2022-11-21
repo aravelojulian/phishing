@@ -1,21 +1,219 @@
 <!-- Modal Details-->
-<div class="modal" tabindex="-1" role="dialog" id="modalDetails">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Detalles</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <p>Modal body text goes here.</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary">Save changes</button>
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
+{% load widget_tweaks %}
+
+<div class="modal-header">
+    <h5 class="modal-title">Detalles del caso <strong>{{row.id}}</strong></h5>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+
+<div class="modal-body d-flex flex-column">
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th scope="col">Rasgo</th>
+            <th scope="col">Valor</th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>NumDots</strong></td>
+                <td>{{row.NumDots}}</td>
+            </tr>
+            <tr>
+                <td><strong>SubdomainLevel</strong></td>
+                <td>{{row.SubdomainLevel}}</td>
+            </tr>
+            <tr>
+                <td><strong>PathLevel</strong></td>
+                <td>{{row.PathLevel}}</td>
+            </tr>
+            <tr>
+                <td><strong>UrlLength</strong></td>
+                <td>{{row.UrlLength}}</td>
+            </tr>
+            <tr>
+                <td><strong>NumDash</strong></td>
+                <td>{{row.NumDash}}</td>
+            </tr>
+            <tr>
+                <td><strong>NumDashInHostname</strong></td>
+                <td>{{row.NumDashInHostname}}</td>
+            </tr>
+            <tr>
+                <td><strong>AtSymbol</strong></td>
+                <td>{{row.AtSymbol}}</td>
+            </tr>
+            <tr>
+                <td><strong>TildeSymbol</strong></td>
+                <td>{{row.TildeSymbol}}</td>
+            </tr>
+            <tr>
+                <td><strong>NumUnderscore</strong></td>
+                <td>{{row.NumUnderscore}}</td>
+            </tr>
+            <tr>
+                <td><strong>NumPercent</strong></td>
+                <td>{{row.NumPercent}}</td>
+            </tr>
+            <tr>
+                <td><strong>NumQueryComponents</strong></td>
+                <td>{{row.NumQueryComponents}}</td>
+            </tr>
+            <tr>
+                <td><strong>NumAmpersand</strong></td>
+                <td>{{row.NumAmpersand}}</td>
+            </tr>
+            <tr>
+                <td><strong>NoHttps</strong></td>
+                <td>{{row.NoHttps}}</td>
+            </tr>
+            <tr>
+                <td><strong>RandomString</strong></td>
+                <td>{{row.RandomString}}</td>
+            </tr>
+            <tr>
+                <td><strong>IpAddress</strong></td>
+                <td>{{row.IpAddress}}</td>
+            </tr>
+            <tr>
+                <td><strong>DomainInSubdomains</strong></td>
+                <td>{{row.DomainInSubdomains}}</td>
+            </tr>
+            <tr>
+                <td><strong>DomainInPaths</strong></td>
+                <td>{{row.DomainInPaths}}</td>
+            </tr>
+            <tr>
+                <td><strong>HttpsInHostname</strong></td>
+                <td>{{row.HttpsInHostname}}</td>
+            </tr>
+            <tr>
+                <td><strong>HostnameLength</strong></td>
+                <td>{{row.HostnameLength}}</td>
+            </tr>
+            <tr>
+                <td><strong>PathLength</strong></td>
+                <td>{{row.PathLength}}</td>
+            </tr>
+            <tr>
+                <td><strong>QueryLength</strong></td>
+                <td>{{row.QueryLength}}</td>
+            </tr>
+            <tr>
+                <td><strong>DoubleSlashInPath</strong></td>
+                <td>{{row.DoubleSlashInPath}}</td>
+            </tr>
+            <tr>
+                <td><strong>NumSensitiveWords</strong></td>
+                <td>{{row.NumSensitiveWords}}</td>
+            </tr>
+            <tr>
+                <td><strong>EmbeddedBrandName</strong></td>
+                <td>{{row.EmbeddedBrandName}}</td>
+            </tr>
+            <tr>
+                <td><strong>PctExtHyperlinks</strong></td>
+                <td>{{row.PctExtHyperlinks}}</td>
+            </tr>
+            <tr>
+                <td><strong>PctExtResourceUrls</strong></td>
+                <td>{{row.PctExtResourceUrls}}</td>
+            </tr>
+            <tr>
+                <td><strong>ExtFavicon</strong></td>
+                <td>{{row.ExtFavicon}}</td>
+            </tr>
+            <tr>
+                <td><strong>InsecureForms</strong></td>
+                <td>{{row.InsecureForms}}</td>
+            </tr>
+            <tr>
+                <td><strong>RelativeFormAction</strong></td>
+                <td>{{row.RelativeFormAction}}</td>
+            </tr>
+            <tr>
+                <td><strong>ExtFormAction</strong></td>
+                <td>{{row.ExtFormAction}}</td>
+            </tr>
+            <tr>
+                <td><strong>AbnormalFormAction</strong></td>
+                <td>{{row.AbnormalFormAction}}</td>
+            </tr>
+            <tr>
+                <td><strong>PctNullSelfRedirectHyperlinks</strong></td>
+                <td>{{row.PctNullSelfRedirectHyperlinks}}</td>
+            </tr>
+            <tr>
+                <td><strong>FrequentDomainNameMismatch</strong></td>
+                <td>{{row.FrequentDomainNameMismatch}}</td>
+            </tr>
+            <tr>
+                <td><strong>FakeLinkInStatusBar</strong></td>
+                <td>{{row.FakeLinkInStatusBar}}</td>
+            </tr>
+            <tr>
+                <td><strong>RightClickDisabled</strong></td>
+                <td>{{row.RightClickDisabled}}</td>
+            </tr>
+            <tr>
+                <td><strong>PopUpWindow</strong></td>
+                <td>{{row.PopUpWindow}}</td>
+            </tr>
+            <tr>
+                <td><strong>SubmitInfoToEmail</strong></td>
+                <td>{{row.SubmitInfoToEmail}}</td>
+            </tr>
+            <tr>
+                <td><strong>IframeOrFrame</strong></td>
+                <td>{{row.IframeOrFrame}}</td>
+            </tr>
+            <tr>
+                <td><strong>MissingTitle</strong></td>
+                <td>{{row.MissingTitle}}</td>
+            </tr>
+            <tr>
+                <td><strong>ImagesOnlyInForm</strong></td>
+                <td>{{row.ImagesOnlyInForm}}</td>
+            </tr>
+            <tr>
+                <td><strong>SubdomainLevelRT</strong></td>
+                <td>{{row.SubdomainLevelRT}}</td>
+            </tr>
+            <tr>
+                <td><strong>UrlLengthRT</strong></td>
+                <td>{{row.UrlLengthRT}}</td>
+            </tr>
+            <tr>
+                <td><strong>PctExtResourceUrlsRT</strong></td>
+                <td>{{row.PctExtResourceUrlsRT}}</td>
+            </tr>
+            <tr>
+                <td><strong>AbnormalExtFormActionR</strong></td>
+                <td>{{row.AbnormalExtFormActionR}}</td>
+            </tr>
+            <tr>
+                <td><strong>ExtMetaScriptLinkRT</strong></td>
+                <td>{{row.ExtMetaScriptLinkRT}}</td>
+            </tr>
+            <tr>
+                <td><strong>PctExtNullSelfRedirectHyperlinksRT</strong></td>
+                <td>{{row.PctExtNullSelfRedirectHyperlinksRT}}</td>
+            </tr>
+            <tr class="phishing-{{row.TreeClassification}}">
+                <td><strong>Árboles de decisión</strong></td>
+                <td>{{row.TreeClassification}}</td>
+            </tr>
+            <tr class="phishing-{{row.SVMClassification}}">
+                <td><strong>Máquinas de soporte vectorial</strong></td>
+                <td>{{row.SVMClassification}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="modal-footer">
+    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
 </div>
 <!-- Modal Details -->
