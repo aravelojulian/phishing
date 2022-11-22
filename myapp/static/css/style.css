@@ -22,19 +22,27 @@ i.icon-user {
     color: white;
 }
 
-button.see-details {
+button.btn-tools {
     background-color: transparent;
     border: none;
     color: black;
     padding: 0;
 }
 
-button.see-details span {
+button.btn-tools span {
     font-size: 20px !important;
 }
 
-button.see-details:hover {
+button.btn-tools:hover {
     color: #0069d9;
+}
+
+button.btn-tools:hover span.bi-check {
+    color: green;
+}
+
+button.btn-tools:hover span.bi-x {
+    color: red;
 }
 
 .navbar .container-fluid .navbar-brand img {
