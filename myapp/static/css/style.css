@@ -62,15 +62,25 @@ ol.breadcrumb  {
 }
 
 .phishing-1 {
-    background-color: green !important;
+    background-color: #3fa63f !important;
     color: white !important;
 }
 
 .phishing-0 {
-    background-color: red !important;
+    background-color: #e35e5e !important;
     color: white !important;
 }
 
 .input-file-dataset {
     align-self: center;
+}
+
+.no-phishing {
+    background-color: #ecb5b5;
+    color: red;
+}
+
+.is-phishing {
+    background-color: #dceedc;
+    color: green;
 }

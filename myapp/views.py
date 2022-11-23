@@ -1,5 +1,5 @@
 import pandas as pd
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 from .static.scripts.DecisionTreeClassifier import DecisionTreeClassifier
 from .static.scripts.ProcessDataset import load_file
@@ -8,6 +8,8 @@ from .static.scripts.SupportVectorMachineClassifier import SupportVectorMachineC
 
 class Dataset:
     url = ''
+    file_name = ''
+    file_ext = ''
     dataset = pd.DataFrame()
 
     def set_url(self, new_url):
@@ -22,13 +24,23 @@ class Dataset:
     def get_values(self):
         return self.dataset.to_records()
 
+    def update_phishing(self, row, value):
+        index_row = self.dataset.index[self.dataset['id'] == int(float(row))].tolist()[0]
+        self.dataset.at[index_row, 'phishing'] = int(value)
+
+    def has_data(self):
+        return len(self.dataset) > 0
+
+    def save_file(self, name):
+        self.dataset.to_excel(name, index=False)
+
 
 url = 'C:/Users/Ale/Documents/Projects/phish/myapp/static/phishing.csv'
 dataset_class = Dataset()
 
 
 def generate_report(request):
-    dataset_class.dataset.to_excel(r'Reporte.xlsx', index=False)
+    dataset_class.save_file(r'Reporte.xlsx')
 
     return render(request, "report.html")
 
@@ -38,6 +50,16 @@ def details(request, row):
     data = data.to_records()[0]
 
     return render(request, "details.html", {'row': data})
+
+
+def save_phishing(request, row):
+    dataset_class.update_phishing(row, 1)
+    return redirect('index')
+
+
+def save_no_phishing(request, row):
+    dataset_class.update_phishing(row, 0)
+    return redirect('index')
 
 
 def index(request):
@@ -80,6 +102,10 @@ def index(request):
         # Agregamos una nueva columna con los valores de la predicción del algoritmo Máquinas de Soporte Vectorial
         dataset_class.assign_column('SVMClassification', predict_svm)
 
+        # Envía los datos a la vista para mostrarlos
+        context = {'tree': result_tree, 'svm': result_svm, 'dataset': dataset_class.get_values()}
+        return render(request, 'index.html', context)
+    elif dataset_class.has_data():
         # Envía los datos a la vista para mostrarlos
         context = {'tree': result_tree, 'svm': result_svm, 'dataset': dataset_class.get_values()}
         return render(request, 'index.html', context)
